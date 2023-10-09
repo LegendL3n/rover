@@ -22,7 +22,7 @@ import (
 	tfjson "github.com/hashicorp/terraform-json"
 )
 
-const VERSION = "0.3.3"
+const VERSION = "0.4.0"
 
 var TRUE = true
 
@@ -127,6 +127,7 @@ func main() {
 		PlanJSONPath:     planJSONPath,
 		ShowSensitive:    showSensitive,
 		GenImage:         genImage,
+		GenOnlyChanges:   genOnlyChanges,
 		TfVarsFiles:      parsedTfVarsFiles,
 		TfVars:           parsedTfVars,
 		TfBackendConfigs: parsedTfBackendConfigs,
