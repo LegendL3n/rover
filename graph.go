@@ -93,6 +93,9 @@ func (r *rover) addNodes(base string, parent string, nodeMap map[string]Node, re
 	nmo := []string{}
 
 	for id, re := range resources {
+		if r.GenOnlyChanges && re.ChangeAction == ActionNoop {
+			continue
+		}
 
 		if re.Type == ResourceTypeResource || re.Type == ResourceTypeData {
 

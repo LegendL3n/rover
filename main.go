@@ -58,6 +58,7 @@ type rover struct {
 	TFCWorkspaceName string
 	ShowSensitive    bool
 	GenImage         bool
+	GenOnlyChanges   bool
 	TFCNewRun        bool
 	Plan             *tfjson.Plan
 	RSO              *ResourcesOverview
@@ -67,7 +68,7 @@ type rover struct {
 
 func main() {
 	var tfPath, workingDir, name, zipFileName, ipPort, planPath, planJSONPath, workspaceName, tfcOrgName, tfcWorkspaceName string
-	var standalone, genImage, showSensitive, getVersion, tfcNewRun bool
+	var standalone, genImage, genOnlyChanges, showSensitive, getVersion, tfcNewRun bool
 	var tfVarsFiles, tfVars, tfBackendConfigs arrayFlags
 	flag.StringVar(&tfPath, "tfPath", "/usr/local/bin/terraform", "Path to Terraform binary")
 	flag.StringVar(&workingDir, "workingDir", ".", "Path to Terraform configuration")
@@ -84,6 +85,7 @@ func main() {
 	flag.BoolVar(&tfcNewRun, "tfcNewRun", false, "Create new Terraform Cloud run")
 	flag.BoolVar(&getVersion, "version", false, "Get current version")
 	flag.BoolVar(&genImage, "genImage", false, "Generate graph image")
+	flag.BoolVar(&genOnlyChanges, "genOnlyChanges", false, "Generate only resources that have changed (without variables and outputs)")
 	flag.Var(&tfVarsFiles, "tfVarsFile", "Path to *.tfvars files")
 	flag.Var(&tfVars, "tfVar", "Terraform variable (key=value)")
 	flag.Var(&tfBackendConfigs, "tfBackendConfig", "Path to *.tfbackend files")
